@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased](https://github.com/python-social-auth/social-app-webpy/commits/master)
 
 ### Changed
+- Remove usage of set/get current strategy methods
 - Allow apps to have any type of user_id field (port of [#1040](https://github.com/omab/python-social-auth/pull/1040)
   by prmtl)
 

@@ -2,11 +2,8 @@ import web
 
 from social_core.actions import do_auth, do_complete, do_disconnect
 
-from social_core.utils import set_current_strategy_getter
 from .utils import psa, load_strategy, load_strategy
 
-
-set_current_strategy_getter(load_strategy)
 
 urls = (
     r'/login/(?P<backend>[^/]+)/?', 'auth',
