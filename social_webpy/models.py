@@ -10,6 +10,7 @@ from social_sqlalchemy.storage import SQLAlchemyUserMixin, \
                                       SQLAlchemyAssociationMixin, \
                                       SQLAlchemyNonceMixin, \
                                       SQLAlchemyCodeMixin, \
+                                      SQLAlchemyPartialMixin, \
                                       BaseSQLAlchemyStorage
 
 
@@ -52,6 +53,12 @@ class Association(WebpySocialBase, SQLAlchemyAssociationMixin, SocialBase):
 
 
 class Code(WebpySocialBase, SQLAlchemyCodeMixin, SocialBase):
+    """Mail validation single one time use code"""
+    pass
+
+
+class Partial(WebpySocialBase, SQLAlchemyPartialMixin, SocialBase):
+    """Partial pipeline storage"""
     pass
 
 
@@ -60,3 +67,4 @@ class WebpyStorage(BaseSQLAlchemyStorage):
     nonce = Nonce
     association = Association
     code = Code
+    partial = Partial
