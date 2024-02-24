@@ -20,7 +20,6 @@ class BaseViewClass(object):
         self.strategy = load_strategy()
         self.data = web.input(_method=method)
         self.backend = None
-        self._user = None
         super(BaseViewClass, self).__init__(*args, **kwargs)
 
     def get_current_user(self):

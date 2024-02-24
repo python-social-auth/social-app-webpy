@@ -1,8 +1,8 @@
 """Flask SQLAlchemy ORM models for Social Auth"""
 import web
 
-from sqlalchemy import Column, String, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import String, ForeignKey
+from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy.ext.declarative import declarative_base
 
 from social_core.utils import setting_name, module_member
@@ -14,7 +14,8 @@ from social_sqlalchemy.storage import SQLAlchemyUserMixin, \
                                       BaseSQLAlchemyStorage
 
 
-SocialBase = declarative_base()
+class SocialBase(DeclarativeBase):
+    pass
 
 UID_LENGTH = web.config.get(setting_name('UID_LENGTH'), 255)
 User = module_member(web.config[setting_name('USER_MODEL')])
@@ -28,10 +29,10 @@ class WebpySocialBase(object):
 
 class UserSocialAuth(WebpySocialBase, SQLAlchemyUserMixin, SocialBase):
     """Social Auth association model"""
-    uid = Column(String(UID_LENGTH))
-    user_id = Column(User.id.type, ForeignKey(User.id),
-                     nullable=False, index=True)
-    user = relationship(User, backref='social_auth')
+    uid: Mapped[str] = mapped_column(String(UID_LENGTH))
+    user_id: Mapped[int] = mapped_column(ForeignKey(User.id),
+                                         nullable=False, index=True)
+    user: Mapped["User"] = relationship(User, backref='social_auth')
 
     @classmethod
     def username_max_length(cls):
