@@ -28,7 +28,8 @@ class BaseViewClass:
         if not hasattr(self, "_user"):
             if self.session.get("logged_in"):
                 self._user = self.strategy.get_user(  # fmt: skip
-                    self.session.get("user_id"))
+                    self.session.get("user_id")
+                )
             else:
                 self._user = None
         return self._user
@@ -72,7 +73,8 @@ class disconnect(BaseViewClass):
     @psa()
     def POST(self, backend, association_id=None):
         return do_disconnect(  # fmt: skip
-            self.backend, self.get_current_user(), association_id)
+            self.backend, self.get_current_user(), association_id
+        )
 
 
 app_social = web.application(urls, locals())
