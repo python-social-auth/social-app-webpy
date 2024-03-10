@@ -3,7 +3,6 @@ import web
 
 from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy.ext.declarative import declarative_base
 
 from social_core.utils import setting_name, module_member
 from social_sqlalchemy.storage import SQLAlchemyUserMixin, \
@@ -16,6 +15,7 @@ from social_sqlalchemy.storage import SQLAlchemyUserMixin, \
 
 class SocialBase(DeclarativeBase):
     pass
+
 
 UID_LENGTH = web.config.get(setting_name('UID_LENGTH'), 255)
 User = module_member(web.config[setting_name('USER_MODEL')])
