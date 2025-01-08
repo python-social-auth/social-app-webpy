@@ -1,5 +1,4 @@
 import web
-
 from social_core.strategy import BaseStrategy, BaseTemplateStrategy
 
 
@@ -19,11 +18,11 @@ class WebpyStrategy(BaseStrategy):
 
     def request_data(self, merge=True):
         if merge:
-            data = web.input(_method='both')
-        elif web.ctx.method == 'POST':
-            data = web.input(_method='post')
+            data = web.input(_method="both")
+        elif web.ctx.method == "POST":
+            data = web.input(_method="post")
         else:
-            data = web.input(_method='get')
+            data = web.input(_method="get")
         return data
 
     def request_host(self):
@@ -33,12 +32,12 @@ class WebpyStrategy(BaseStrategy):
         return web.seeother(url)
 
     def html(self, content):
-        web.header('Content-Type', 'text/html;charset=UTF-8')
+        web.header("Content-Type", "text/html;charset=UTF-8")
         return content
 
     def render_html(self, tpl=None, html=None, context=None):
         if not tpl and not html:
-            raise ValueError('Missing template or html parameters')
+            raise ValueError("Missing template or html parameters")
         context = context or {}
         if tpl:
             tpl = web.template.frender(tpl)
@@ -59,7 +58,7 @@ class WebpyStrategy(BaseStrategy):
         return web.web_session.setdefault(name, value)
 
     def build_absolute_uri(self, path=None):
-        path = path or ''
-        if path.startswith('http://') or path.startswith('https://'):
+        path = path or ""
+        if path.startswith("http://") or path.startswith("https://"):
             return path
-        return web.ctx.protocol + '://' + web.ctx.host + path
+        return web.ctx.protocol + "://" + web.ctx.host + path

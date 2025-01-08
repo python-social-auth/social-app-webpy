@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/python-social-auth/social-app-webpy/commits/master)
 
+### Changed
+- Modified model and access code to work with SQLAlchemy version 2 (Issue #1)
+- Updated packaging information files per PEP 517, PEP 518 (Issue #2)
+- Restricted Python minimum working version to 3.7 or higher to align with SQLAlchemy 2 (Issue #1)
+- Fixed behavior of get_current_user function throwing a None error when executed (Issue #3)
+
 ## [1.0.0](https://github.com/python-social-auth/social-app-webpy/releases/tag/1.0.0) - 2017-01-22
 
 ### Added
