@@ -49,25 +49,17 @@ class UserSocialAuth(WebpySocialBase, SQLAlchemyUserMixin, SocialBase):
 class Nonce(WebpySocialBase, SQLAlchemyNonceMixin, SocialBase):
     """One use numbers"""
 
-    pass
-
 
 class Association(WebpySocialBase, SQLAlchemyAssociationMixin, SocialBase):
     """OpenId account association"""
-
-    pass
 
 
 class Code(WebpySocialBase, SQLAlchemyCodeMixin, SocialBase):
     """Mail validation single one time use code"""
 
-    pass
-
 
 class Partial(WebpySocialBase, SQLAlchemyPartialMixin, SocialBase):
     """Partial pipeline storage"""
-
-    pass
 
 
 class WebpyStorage(BaseSQLAlchemyStorage):

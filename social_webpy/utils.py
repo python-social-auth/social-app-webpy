@@ -12,8 +12,8 @@ DEFAULTS = {
 
 
 def get_helper(name, do_import=False):
-    config = web.config.get(setting_name(name), DEFAULTS.get(name, None))
-    return do_import and module_member(config) or config
+    config = web.config.get(setting_name(name), DEFAULTS.get(name))
+    return (do_import and module_member(config)) or config
 
 
 def load_strategy():
@@ -43,8 +43,10 @@ def psa(redirect_uri=None):
 
 
 def backends(user):
-    """Load Social Auth current user data to context under the key 'backends'.
-    Will return the output of social_core.backends.utils.user_backends_data."""
+    """
+    Load Social Auth current user data to context under the key 'backends'.
+    Will return the output of social_core.backends.utils.user_backends_data.
+    """
     return user_backends_data(
         user,
         get_helper("AUTHENTICATION_BACKENDS"),
@@ -54,13 +56,13 @@ def backends(user):
 
 def login_redirect():
     """Load current redirect to context."""
-    method = web.ctx.method == "POST" and "post" or "get"
+    method = (web.ctx.method == "POST" and "post") or "get"
     data = web.input(_method=method)
     value = data.get("next")
     return {
         "REDIRECT_FIELD_NAME": "next",
         "REDIRECT_FIELD_VALUE": value,
-        "REDIRECT_QUERYSTRING": value and ("next=" + value) or "",
+        "REDIRECT_QUERYSTRING": (value and ("next=" + value)) or "",
     }
 
 

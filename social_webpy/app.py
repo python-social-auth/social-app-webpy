@@ -18,7 +18,7 @@ urls = (
 class BaseViewClass:
     def __init__(self, *args, **kwargs):
         self.session = web.web_session
-        method = web.ctx.method == "POST" and "post" or "get"
+        method = (web.ctx.method == "POST" and "post") or "get"
         self.strategy = load_strategy()
         self.data = web.input(_method=method)
         self.backend = None
